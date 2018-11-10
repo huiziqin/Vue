@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+       
+        <!-- 循环每项  在 数组中 -->
+        <!-- 循环普通数组 -->
+        <!-- <p v-for='(item, i) in list'>索引值：{{i}}---每一项：{{item}}</p> -->
+
+        <!-- 循环对象数组 -->
+        <!-- <p v-for='(user, i) in Objlist'>索引：{{i}}---id:{{user.id}}---名字：{{user.name}}</p> -->
+       
+        <!-- 循环对象 -->
+        <!-- 注意：在遍历对象身上的键值对的时候 除了有K-V  在第三个位置还有一个索引 -->
+        <!-- <p v-for='(val,key,i) in users'>索引：{{i}}键：{{key}}---值：{{val}}</p> -->
+
+        
+
+        <!-- in 后面 我们可以放  普通数组;对象数组;对象; 数字（循环这么多次） -->
+        <!-- 使用v-for 迭代数字  count值从1开始-->
+        <!-- <p v-for='count in 10'>这是第{{count}}次循环</p> -->
+
+
+        <div>
+            <label>ID:
+                <input type="text" v-model="id">
+            </label>
+            <label>Name:
+                <input type="text" v-model="name">
+            </label>
+            <input type="button" value="添加" @click='add'>
+        </div>
+
+
+
+
+        <!-- 注意：v-for 循环的时候 key属性只能使用number获取string -->
+        <!-- 注意：key 在使用的时候，必须使用v-bing属性绑定的形式 指定key值 -->
+        <p v-for="item in Objlist" :key="item.id">
+            <input type="checkbox">
+            {{item.id}}---{{item.name}}
+
+        </p>
+
+
+
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                id: '',
+                name: '',
+                list: [1,2,3,4,8,9,3,6,7,21,4,66,87,99],
+                Objlist:[
+                    {id:1, name:'zs01'},
+                    {id:2, name:'zs02'},
+                    {id:3, name:'zs03'},
+                    {id:4, name:'zs04'},
+                    {id:5, name:'zs05'}
+                ],
+                users: {
+                    id: 1,
+                    name: 'hx',
+                    age:22,
+                    sex: '男',
+                    email: '1193447180@qq.com',
+                }
+
+            },
+            methods:{
+                add(){
+                    //尾部追加
+                   // this.Objlist.push({id:this.id,name:this.name})
+                   //头部追加
+                    this.Objlist.unshift({id:this.id,name:this.name})
+                }
+            },
+        });
+    </script>
+</body>
+</html>

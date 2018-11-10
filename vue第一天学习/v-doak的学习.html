@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 1.导入vue包 -->
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <title>Document</title>
+    <style>
+    [v-cloak] {
+        /* 隐藏 */
+        display: none;  
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用v-cloak 解决 插值表达式  由于网络延迟  的闪烁问题 -->
+        <!-- 原理：在msg没渲染之前设置标签样式隐藏  数据拿到后v-cloak作用移除 -->
+        <p v-cloak>{{msg}}</p>
+        <h4 v-text="msg"></h4>
+        <!-- 区别：
+            默认v-text 是没有闪烁问题的
+            v-text 会覆盖元素原本的内容，但是 插值表达式 只会替换自己的占位符 不会吧整个元素的内容清空
+            v-html 会覆盖元素原本的内容，但是 是以html文档显示 可以显示样式  而v-text只是原来的文本 标签 样式都以文本显示
+
+         -->
+         <div>{{msg2}}</div>
+         <div v-text='msg2'></div>
+         <div v-html='msg2'></div>
+
+
+        <input type="button" value="按钮" v-bind:title="mytitle + '    huiziqin'">
+        <!-- v-bind：是vue中提供的用于绑定属性的指令 把引号中的当做一个表达式-->
+        <!-- 简写  v-bind:  指令可以简写成 :要绑定的属性 -->
+        <!-- v-bind中可以写合法的js表达式 -->
+        <input type="button" value="按钮" :title="mytitle + '    huiziqin'">
+
+
+         <!-- Vue中提供了v-on：事件绑定机制 -->
+        <input type="button" value="按钮-点击事件" :title="mytitle + '    huiziqin'" v-on:click="show">
+        <input type="button" value="按钮-点击事件" :title="mytitle + '    huiziqin'" @click="show">
+        <input type="button" value="按钮-鼠标覆盖事件" :title="mytitle + '    huiziqin'" v-on:mouseover="print">
+
+
+
+    </div>
+  
+
+    <script>
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'123',
+            msg2: '<h1>哈哈，我是Vue</h1>',
+            mytitle:'这是一个自己定义的Title',
+        },
+        methods:{ //这个methods属性中定义了当前Vue实例所有可用的方法
+            show:function(){
+                alert('hello');
+            },
+            print:function(){
+                console.log("鼠标覆盖事件！！！");
+            }
+            
+        }
+    });
+    </script>
+
+</body>
+
+</html>
+<!-- 
+    1.  如何定义一个基本的Vue代码结构
+    2.  插值表达式 和 v-text区别
+    3.  v-cloak
+    4.  v-html  
+    5.  v-bind vue提供的属性绑定机制  缩写是 ：
+    6.  v-on   vue提供的事件绑定机制  缩写是 @
+
+
+
+
+
+
+
+
+ -->

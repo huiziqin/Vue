@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <input type="button" value="浪起来" title="跑马灯效果" @click="lang">
+        <!-- 
+            分析：
+                1.给按钮一个点击事件 v-on   @
+                2.按钮的事件处理函数中，写相关业务代码：拿到msg字符串  然后 调用字符串的substring 来进行字符串的截取操作
+            把第一个字符截取出来，放到最后一个位置即可
+                3.为了实现点击一下按钮 自动截取的功能  需要把2步骤中的代码，放到一个定时器中去 
+        -->
+        <input type="button" value="低调" @click="stop">
+        <h1>{{msg}}</h1>
+        <h4>intervalId:{{intervalId}}</h4>
+
+
+    </div>
+    <script>
+        //注意：在vm实例中，如果想要获取data上的数据或者想要调用methods:中的方法，必须通过this.数据属性名 或this.方法名进行
+        //访问。这里的this 就表示 我们new 出来的vm实例对象
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                msg:'猥琐发育，别浪！！！',
+                msg2:'稳住，我们能赢！！！',
+                intervalId:null,//在data上定义 定时器id
+            },
+            methods:{
+                //ES6写法lang()
+                lang(){
+
+                    //解决重复开定时器的问题
+                    if(this.intervalId!=null){
+                        console.log("已经开启！不能重复开");
+                        return;
+                    }
+                    // var _this = this;
+                    //定时器
+                    //  =>函数 解决this指向问题
+                    this.intervalId = setInterval(() => {
+                        console.log(this.msg);
+                        var start = this.msg.substring(0,1);  //获取头一个字符
+                        console.log(start);
+                        var end = this.msg.substring(1); //获取后面的字符
+                        console.log(end);
+                        this.msg = end+start; //后面的拼接头一个 赋值给原来的msg
+                        console.log(this.msg);
+                    },200)        
+                    //注意：vm实例 会监听自己身上data中所有数据的改变，
+                    //只有数据一发生变化，就会把新的数据 ，从data刷新到页面中去
+                    //好处：只用关系数据即可 不需要考虑如何重新渲染页面
+                },
+                stop(){ //停止计数器
+                    clearInterval(this.intervalId)
+                    //每当清除了定时器之后，需要重新把intervalId置为null
+                    this.intervalId=null;
+                },
+            },
+        })
+    
+    </script>
+</body>
+</html>

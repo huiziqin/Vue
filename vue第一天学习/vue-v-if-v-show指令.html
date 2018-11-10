@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="toggle">切换T/F</button>
+        <button @click="flag=!flag">切换T/F</button>
+        <h1 v-if="flag">v-if控制的元素</h1>
+        <h1 v-show="flag">v-show控制的元素</h1>
+
+        <!-- 区别：
+            v-if 如果为false 注释掉代码    有较高的切换性能消耗
+
+            v-show 只是通过样式操作display: none;  有较高的初始渲染消耗 
+        
+
+            如果元素涉及到频繁的切换，最好不要使用v-if   推荐使用v-show
+            如果元素可能永远也不会被显示出来给用户看到    则推荐使用v-if
+
+        -->
+
+
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                flag: true,
+            },
+            methods:{
+                toggle(){
+                    this.flag = !this.flag;
+                }
+            },
+        });
+    </script>
+</body>
+</html>

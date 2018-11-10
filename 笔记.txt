@@ -1,0 +1,31 @@
+安排：
+    3天：vue基本语法和概念    打包工具    webpack   gulp
+    3天： 以项目驱动
+
+什么是vue.js?      https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js
+    目前最火的前端框架，React是最流行的前端框架（网站/手机app都用到）
+    vue.js是前端的主流框架之一    和Angular.js React.js  一起  并成为前端三大主流框架
+    vue.js是一套构建用户界面的框架，只关注视图层  
+
+
+
+
+    第一天：基本语法
+    第二天：品牌管理案例
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

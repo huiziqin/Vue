@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <title>Title</title>
+    <style>
+        .inner{
+            height: 150px;
+            background-color:darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用 .stop 阻止冒泡 -- 从里到外>
+        <!-- <div class="inner" @click="divHandler">
+            <input  type="button" value="戳他" @click.stop="btnHandler">
+        </div> -->
+
+        <!-- 使用 .prevent 阻止默认行为 -->
+        <!-- <a href="http://www.baidu.com" @click.prevent="LinkClick" title="百度编程大法">面向百度编程</a> -->
+
+        <!-- 使用 .capture 捕获机制 --从外到里> -->
+        <!-- <div class="inner" @click.capture="divHandler">
+                <input  type="button" value="戳他" @click="btnHandler">
+        </div> -->
+
+        <!-- 使用 .self  实现只有点击当前元素才会触发事件处理函数    冒泡  捕获 都不触发这个元素的处理函数 -->
+        <!-- .self 只会阻止自己身上冒泡行为的触发，并不会真正阻止 冒泡的行为 -->
+        <!-- <div class="inner" @click.self="divHandler">
+                <input  type="button" value="戳他" @click="btnHandler">
+        </div> -->
+
+        <!-- 使用 .once  只触发一次事件处理函数 -->
+        <!-- <a href="http://www.baidu.com" @click.prevent.once="LinkClick" title="百度编程大法">面向百度编程</a> -->
+
+        
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{},
+            methods:{
+                divHandler(){
+                    console.log("触发了inner div 的点击事件");
+                },
+                btnHandler(){
+                    console.log("触发了btn 的点击事件");
+                },
+                LinkClick(){
+                    console.log("阻止默认行为");
+                },
+            },
+        });
+    </script>
+</body>
+</html>
