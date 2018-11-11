@@ -1,0 +1,57 @@
+<!-- 
+    生命周期钩子=生命周期函数=生命周期事件
+    生命周期函数分类：
+    创建期间的生命周期函数：
+    运行期间的生命周期函数：
+    销毁期间的生命周期函数： 
+-->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+        <title>Title</title>
+    </head>
+    <body>
+        <div id="app">
+            <h3 id="h3">{{msg}}</h3>
+        </div>
+    
+    
+    
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data:{
+                    msg:'ok',
+                },
+                methods:{
+                    show(){
+                        console.log("执行了show()方法");
+                    },
+                },
+                beforeCreate() {//这是我们遇到的第一个生命周期函数，表示实例完全被创建出来之前会执行它
+                    console.log('执行第一个生命周期函数时:'+this.msg);  //还未初始化
+                    //this.show();   还未初始化
+                    //注意：在beforeCreate 生命周期函数执行的时候，data 和 methods 中的数据都还未初始化
+                },
+                created() { //这是我们遇到的第二个生命周期函数，
+                    console.log('执行第二个生命周期函数时:'+ this.msg);  
+                    this.show();   
+                    //在 created 中 ，data 和 methods 都已经被初始化好了！
+                    //如果要调用methods中的方法，或操作data中的数据  最早只能在created中操作
+                },
+                //将要挂载
+                beforeMount() {//这是遇到的第三个生命周期函数，表示模板已经编译完成了，但是尚未把模板渲染到页面中去
+                    console.log('执行第三个生命周期函数时:'+ document.getElementById('h3').innerText);
+                    //在beforeMount 执行的时候，页面中的元素，还没有被真正替换过来，只是之前写的一些模板字符串
+                },
+                mounted() {//这是遇到的第四个生命周期函数，表示， 内存中的模板，已经挂载到了页面中，用户已经可以看到渲染好的页面
+                    console.log('执行第四个生命周期函数时:'+ document.getElementById('h3').innerText);
+                    //注意：mounted 是实例创建期间最后一个生命周期函数，当执行完mounted 就表示 实例已经被创建好了，此时，如果没有其他操作的话，这个实例就静静的在内存中
+                },
+            });
+        </script>
+    </body>
+    </html>

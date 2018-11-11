@@ -1,38 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
     <title>Title</title>
 </head>
+
 <body>
     <div id="app">
         <h1>{{msg | msgFormat('疯狂')}}</h1>
+        <h1>{{date | dateFormat }}</h1>
     </div>
 
 
 
     <script>
         //定义一个Vue 全局的过滤器 名字 msgFormat
-        Vue.filter('msgFormat',function(msg,keywords){
+        Vue.filter('msgFormat', function (msg, keywords) {
             //字符串的replace方法  第一个参数  除了可写一个 字符串外  还可以定义一个正则
             //return msg.replace('单纯','邪恶');
             //g全局匹配
-            return msg.replace(/单纯/g,keywords);
+            return msg.replace(/单纯/g, keywords);
+        });
+        Vue.filter('dateFormat', function (dateStr, pattern = '') {
+            console.log(dateStr);
+            //根据给定的时间字符串 得到特定的时间
+            var dt = new Date(dateStr);
+            var y = dt.getFullYear();
+            var m = dt.getMonth();
+            var d = dt.getDate();
+            if (pattern.toLowerCase() == 'yyyy-mm-dd') {
+                return `${y}-${m}-${d}`;
+            } else {
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+                return `${y}-${m}-${d} ${h}:${m}:${s}`;
+            }
+
         });
 
-        
 
 
 
         var vm = new Vue({
             el: '#app',
-            data:{
-                msg:'曾经！ 我也是一个单纯的少年，单纯的我，傻傻的问，谁是世界上最单纯的男人',
+            data: {
+                date: new Date(),
+                msg: '曾经！ 我也是一个单纯的少年，单纯的我，傻傻的问，谁是世界上最单纯的男人',
             },
-            methods:{},
+            methods: {},
+            //定义私有过滤器  过滤器有两个 条件 过滤器名称  处理函数
+            //过滤器调用的时候，采用就近原则，如果私有过滤器和全局过滤器名称一致，这时候 优先调用私有过滤器
+            filters: {
+                dateFormat: function (dateStr, pattern='') {
+                    var dt = new Date(dateStr);
+                    var y = dt.getFullYear();
+                    //padStart(位数，补充的字符串)方法  用于补充字符串
+                    var m = (dt.getMonth()+1).toString().padStart(2,'0');
+                    var d = dt.getDate().toString().padStart(2,'0');
+                    if (pattern.toLowerCase() == 'yyyy-mm-dd') {
+                        return `${y}-${m}-${d}`;
+                    } else {
+                        var h = dt.getHours().toString().padStart(2,'0');
+                        var mm = dt.getMinutes().toString().padStart(2,'0');
+                        var s = dt.getSeconds().toString().padStart(2,'0');
+                        return `${y}-${m}-${d} ${h}:${mm}:${s}*****`;
+                    }
+                }
+            },
         });
     </script>
 </body>
+
 </html>
