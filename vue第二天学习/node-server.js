@@ -1,6 +1,7 @@
 //导入http内置模块
 const http = require('http')
 //这个核心模块 帮我们解析URL地址 拿到pathname query
+const urlModel = require('url')
 
 //创建一个http服务器
 const server = http.createServer()
