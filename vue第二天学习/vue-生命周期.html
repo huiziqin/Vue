@@ -15,6 +15,7 @@
     </head>
     <body>
         <div id="app">
+            <button @click="msg='update !'" class="btn btn-primary">修改数据</button>
             <h3 id="h3">{{msg}}</h3>
         </div>
     
@@ -51,6 +52,29 @@
                     console.log('执行第四个生命周期函数时:'+ document.getElementById('h3').innerText);
                     //注意：mounted 是实例创建期间最后一个生命周期函数，当执行完mounted 就表示 实例已经被创建好了，此时，如果没有其他操作的话，这个实例就静静的在内存中
                 },
+                //接下来是运行中的两个事件
+                beforeUpdate() {//这时候，表示 我们的界面还没有被更新，数据被更新了
+                    console.log('界面上元素的内容:'+ document.getElementById('h3').innerText);
+                    console.log('data中的数据时：' + this.msg);
+                    //得出结论：当执行beforeUpdate 的时候，页面中的显示数据，还是旧的，此时data数据时最新的，页面尚未和最新的数据保持同步
+
+                },
+                updated() {//updated 事件执行的时候，页面和data数据已经保持同步了，都是最新的
+                    console.log('界面上元素的内容:'+ document.getElementById('h3').innerText);
+                    console.log('data中的数据时：' + this.msg);
+                },
+                //接下来是销毁阶段的两个事件
+                beforeDestroy() {
+                    //当执行beforeDestroy钩子函数的时候，Vue实例就已经从运行阶段 进入到了销毁阶段
+                    //当执行beforeDestroy 的时候 实例身上的所有的data和所有的methods  以及过滤器 指令  都处于可用状态
+                    //此时还没有真正执行销毁的过程
+                },
+                destroyed() {
+                    //当执行到destroyed函数的时候，组件已经被完全销毁了，此时组件中所有的数据 方法 过滤器 指令  都已经不可用了
+                },
+
+
+
             });
         </script>
     </body>
