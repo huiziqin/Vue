@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+
+
+        <a href="#" @click.prevent="comName='login'">登录</a>
+        <a href="#" @click.prevent="comName='register'">注册</a>
+        <a href="#" @click.prevent="comName='chongzhi'">找回密码</a>
+
+        <!-- Vue 提供了component元素 来展示对于名称的组件 -->
+        <!-- component 是一个占位符 ：is 属性  可以用来指定要展示的组件的名称 -->
+        <component :is="comName"></component>
+        <!-- 
+            总结：当前学习了几个Vue 提供的标签
+            component
+            template
+            transition
+            transitionGroip
+        -->
+    </div>
+
+    <template id="tmpl_log">
+        <div>
+            <h1>登录组件</h1>
+        </div>
+    </template>
+    <template id="tmpl_reg">
+        <div>
+            <h1>注册组件</h1>
+        </div>
+    </template>
+    <template id="tmpl_ch">
+        <div>
+            <h1>重置密码组件</h1>
+        </div>
+    </template>
+
+    <script>
+        //组件名称是 字符串
+        Vue.component('login', {
+            template: '#tmpl_log',
+        });
+        Vue.component('register', {
+            template: '#tmpl_reg',
+        });
+        Vue.component('chongzhi', {
+            template: '#tmpl_ch',
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                comName: 'login',//当前component 中的is:绑定的组件名称
+            },
+            methods: {},
+        });
+    </script>
+</body>
+
+</html>
