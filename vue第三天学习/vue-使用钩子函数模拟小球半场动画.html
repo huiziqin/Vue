@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <title>Title</title>
+    <style>
+    .ball{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: red;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+            <button type="button"  @click="flag= !flag" class="btn btn-success" >快到碗里来</button>
+        <transition
+            @before-enter ="beforeEnter"
+            @enter ="enter" 
+            @after-enter ="afterEnter"
+        
+        >
+                <div class="ball" v-show="flag"></div>
+        </transition>
+ 
+      
+        
+    </div>
+
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                flag: false,
+            },
+           
+            methods:{
+                beforeEnter(el){//动画入场之前 动画尚未开始    设置起始样式
+                    //设置小球开始动画之前的 起始位置
+                    el.style.transform = "translate(1500px,900px)"
+                },
+                enter(el,done){//表示动画 开始之后的样式  这里可以设置小球完成动画之后的结束状态
+                    el.offsetWidth
+                    el.style.transform = "translate(00px,0px)"
+                    el.style.transition = 'all 0.2s ease'
+                    done()
+                },
+                afterEnter(el){//动画完成之后
+                    this.flag = !this.flag
+                },
+            },
+        });
+    </script>
+</body>
+</html>

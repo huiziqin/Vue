@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <title>Title</title>
+    <!-- 定义两组样式 来控制transition 内部元素实现动画 -->
+    <style>
+        /* v-enter 是个时间点   是进入之前 元素的起始状态  此时还没有开始进入 */
+        /* .v-leave-to 是动画离开之后 离开的种种状态 此时 元素动画已经结束 */
+
+
+    .v-enter,.v-leave-to{
+        opacity: 0;
+        transform: translateX(1200px)
+    }
+    .v-enter-active,.v-leave-active{
+        transition:all 0.8s ease; 
+    } 
+    /* 修改前缀 */
+    .fade-enter,.fade-leave-to{
+        opacity: 0;
+        transform: translateY(600px)
+    }
+      /*  .v-enter-active 入场动画的时间段 
+        .v-leave-active 离场动画的时间段 
+    */
+    .fade-enter-active,.fade-leave-active{
+        transition:all 0.8s ease;
+        
+    } 
+
+
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 需求：点击按钮 让h3显示 再点击 让h3隐藏 -->
+        <!-- 1.使用transition元素 把 需要被动画控制的元素 包裹起来 -->
+        <!-- transition元素 是vue 官方提供的 -->
+        <button type="button" @click="flag = !flag" class="btn btn-primary">切换</button>
+        <transition>
+            <img src="https://bbs.ichunqiu.com/template/win8mi_15th_design/src/logo.png" alt="" v-if="flag">
+        </transition>
+        <hr>
+        <!-- 修改前缀 -->
+        <button type="button" @click="flag2 = !flag2" class="btn btn-primary">切换</button>
+        <transition name="fade">
+            <img src="https://bbs.ichunqiu.com/template/win8mi_15th_design/src/logo.png" alt="" v-if="flag2">
+        </transition>
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                flag2: false,
+            },
+            methods: {},
+        });
+    </script>
+</body>
+
+</html>

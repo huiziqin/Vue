@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/animate.css/3.7.0/animate.css" rel="stylesheet">
+    <title>Title</title>
+    <!-- 入场使用 bounceIn    离场使用 bounceOut -->
+</head>
+<body>
+    <div id="app">
+
+        <!-- 需求：点击按钮 让h3显示 再点击 让h3隐藏 -->
+        <button type="button" @click="flag = !flag" class="btn btn-primary">切换</button>
+
+        <!-- 两种写法 -->
+        <transition enter-active-class="animate bounceIn" leave-active-class="animate bounceOut">
+            <h2 v-if="flag">这是一个标签</h2>
+        </transition>
+        <!-- 使用duration="200"  来统一设置 入场 离场 时候的动画时长 -->
+        <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="200">
+                <h2 v-if="flag" class="animate">这是一个标签</h2>
+        </transition>
+        <!-- 使用:duration="{enter:200,leave:400} 分别控制入场/离场时长 -->
+        <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="{enter:1200,leave:2000}">
+                <h2 v-if="flag" class="animate">这是一个标签</h2>
+        </transition>
+
+    </div>
+
+
+   
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                flag: false,
+            },
+            methods:{},
+        });
+    </script>
+</body>
+</html>

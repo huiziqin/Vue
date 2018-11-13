@@ -27,7 +27,7 @@
 
 
 
-
+api地址：http://www.liulongbin.top:3005/api/getprodlist
 
 
 
