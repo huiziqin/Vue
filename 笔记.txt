@@ -40,5 +40,10 @@ api地址：http://www.liulongbin.top:3005/api/getprodlist
 
 
 
+第四天：父子组件间传值
+        路由
+
+
+
 
     
