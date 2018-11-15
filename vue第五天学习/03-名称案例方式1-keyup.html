@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/3.0.1/vue-router.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <title>Title</title>
+    <style>
+    html,body{
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+            分析：
+            1.监听文本框数据的改变  这样才知道 什么时候去拼接 出一个fullname
+            2.如何监听到 文本框的数据改变呢？
+        -->
+        <input type="text" v-model="firstname" @keyup="getFullname">+
+        <input type="text" v-model="lastname" @keyup="getFullname">=
+        <input type="text" v-model="name">
+        
+      
+        
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                firstname:'',
+                lastname:'',
+                name:'',
+            },
+            methods:{
+                getFullname(){
+                    this.name = this.firstname+this.lastname;
+                },
+            },
+        });
+    </script>
+</body>
+</html>

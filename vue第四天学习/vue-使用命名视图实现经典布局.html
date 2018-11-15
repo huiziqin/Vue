@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/3.0.1/vue-router.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css.css" type="text/css" />
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <div class="container">
+            <!-- 
+                什么时候 考虑 它 是一个变量 还是一个值  
+                如果 加:考虑变量？如果是值 加''   name=""  
+                   name="值"
+             -->
+            <router-view name="left"></router-view>
+            <router-view name="main"></router-view>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        var header = {
+            template:'<h1 class="header">头部区域</h1>',
+        }
+        var leftBox = {
+            template:'<h1 class="left">left侧边栏区域</h1>',
+        }
+        var mainBox = {
+            template:'<h1 class="main">mainBox主体区域</h1>',
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path:'/',
+                    components:{
+                        'default': header,
+                        'left':leftBox,
+                        'main':mainBox,
+                    },
+                },
+            ]
+        })
+
+
+
+        var vm = new Vue({
+            el: '#app',
+            data:{},
+            methods:{},
+            router,
+        });
+    </script>
+</body>
+</html>

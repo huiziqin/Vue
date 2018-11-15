@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/3.0.1/vue-router.js"></script>
+    <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <title>Title</title>
+    <style>
+    html,body{
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+          
+        -->
+        <input type="text" v-model="firstname">+
+        <input type="text" v-model="lastname">=
+        <input type="text" v-model="name">
+        
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                firstname:'',
+                lastname:'',
+                name:'',
+            },
+            methods:{},
+            watch:{
+                firstname:function(newVal,oldVal){
+                   this.name = this.firstname+this.lastname;
+                   console.log(newVal+'---'+oldVal)
+                },
+                lastname:function(newVal){
+                    this.name = this.firstname+newVal;
+                },
+            },//使用这个属性 可以监视data中指定数据的变化，然后触发这个watch中对应的function处理函数
+
+        });
+    </script>
+</body>
+</html>
