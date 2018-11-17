@@ -1,5 +1,5 @@
 {
-  "name": "webpack-fuxi",
+  "name": "webpack-router",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
   }
 }

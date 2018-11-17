@@ -1,5 +1,11 @@
 console.log('项目的js入口文件！');
+
+import './css/index.css'
+
+
 //如何在webpack构建的项目中，使用Vue进行开发
+
+
 
 //注意：在webpack中，使用mport Vue from 'vue' 导入的vue构造函数 功能不完整，
 //只提供了runtime-only的方式  并没有提供 像网页中那样使用方式
@@ -13,11 +19,39 @@ import Vue from 'vue'    //得到一个Vue 的构造函数
 // 3.在vue文件夹 找package.json的包配置文件
 // 4.在package.json文件中，查找一个 main属性[main属性 指定了这个包在被加载时 的入口文件]
 
+
+//导入login.vue 组件  得到组件的模板对象
+import login from './login.vue'
+
+
 //创建一个vue实例
 var vm = new Vue({
     el:'#app',
     data:{
-        msg:'112',
-        time: new Date(),
+        
     },
+    // components:{
+    //     login
+    // },
+    // render:function(createElements){
+    //     return createElements(login)
+    // },
+    render:c=>c(login)
+    
 })
+
+
+
+
+
+
+
+
+// 拿到test.js暴露的对象
+import test, { title } from './test.js'
+console.log(test)
+console.log(title)
+
+
+
+

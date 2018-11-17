@@ -27,12 +27,6 @@ module.exports = {
             //[hash:8]-[name].[ext] 原名前加8位hash
             {test:/\.(ttf|eot|svg|woff|woff2)$/, use:['url-loader']},
             {test:/\.js$/,use:'babel-loader',exclude:/node_modules/},
-            {test:/\.vue$/,use:'vue-loader'},
         ]
-    },
-    resolve:{
-        alias:{ //修改vue 被导入时候的包的路径
-            'vue$':'vue/dist/vue.js'
-        }
     },
 }

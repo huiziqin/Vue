@@ -1,0 +1,12 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color:red;
+}
+#box{
+    width: 220px;
+    height: 120px;
+    /* 默认情况下，webpack 无法处理css文件中的URL地址  */
+    background:url('../images/1.jpg');
+    background-size: cover;
+}
