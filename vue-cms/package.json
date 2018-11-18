@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --open --port 3000 --contentBase src --hot"
+    "dev": "webpack-dev-server --open --port 3000 --contentBase src --hot --host 192.168.43.252"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "mint-ui": "^2.2.13",
+    "moment": "^2.22.2",
     "vue": "^2.5.17",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
